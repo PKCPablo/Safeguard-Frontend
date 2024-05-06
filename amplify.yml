@@ -8,7 +8,7 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: dist/safeguard-frontend
+    baseDirectory: dist/safeguard-frontend/browser
     files:
       - '**/*'
   cache:

@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/safeguard-frontend/browser",
+            "outputPath": "dist/safeguard-frontend/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
