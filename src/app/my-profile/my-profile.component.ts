@@ -29,7 +29,6 @@ export class MyProfileComponent implements OnInit {
           return;
         }
         this.attributes = result;
-        this.attributes.forEach((attr: CognitoUserAttribute) => console.log(attr.Name + ' = ' + attr.Value));
       });
     });
   }
