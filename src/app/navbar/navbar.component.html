@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <button mat-button routerLink="/home">Safeguard</button>
+  <span class="flexExpand"></span>
+  <button mat-fab extended class="topnav-button" routerLink="/login" *ngIf="!(isLoggedIn | async)">
+    <mat-icon fontIcon="login"></mat-icon>
+    Log In
+  </button>
+  <button mat-fab extended class="topnav-button" routerLink="/signup" *ngIf="!(isLoggedIn | async)">
+    <mat-icon fontIcon="exit_to_app"></mat-icon>
+    Sign Up
+  </button>
+  <button mat-fab extended class="topnav-button" routerLink="/my-profile" *ngIf="isLoggedIn | async">
+    <mat-icon fontIcon="account_circle"></mat-icon>
+    Mi Perfil
+  </button>
+  <button mat-fab extended class="topnav-button" (click)="onLogout()" *ngIf="isLoggedIn | async">
+    <mat-icon fontIcon="exit_to_app"></mat-icon>
+    Log Out
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidebar">
+  <mat-sidenav mode="side" opened> Sidenav content </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
