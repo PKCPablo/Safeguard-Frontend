@@ -11,12 +11,13 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // Angular Material
 import { AppMaterialModule } from './app-material/app-material.module';
+import { apiRestInterceptor } from './interceptors/api-rest.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,10 @@ import { AppMaterialModule } from './app-material/app-material.module';
     AppMaterialModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(withInterceptors([
+      apiRestInterceptor
+    ]))
   ],
   bootstrap: [AppComponent]
 })
