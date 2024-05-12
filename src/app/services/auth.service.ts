@@ -15,8 +15,8 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   poolData = {
-    UserPoolId: environment.CognitoUserPoolId,
-    ClientId: environment.CognitoClientId,
+    UserPoolId: environment.cognito.userPoolId,
+    ClientId: environment.cognito.clientId,
   };
 
   userPool = new CognitoUserPool(this.poolData);

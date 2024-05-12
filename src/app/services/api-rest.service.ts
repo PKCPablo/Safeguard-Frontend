@@ -9,7 +9,7 @@ import { Producto } from '../models/producto';
 })
 export class ApiRestService {
 
-  APIURL = environment.APIURL;
+  APIURL = environment.api.APIURL;
 
   constructor(private httpClient: HttpClient) { }
 

@@ -11,8 +11,8 @@ export class MyProfileComponent implements OnInit {
 
   attributes: CognitoUserAttribute[];
   poolData = {
-    UserPoolId: environment.CognitoUserPoolId,
-    ClientId: environment.CognitoClientId,
+    UserPoolId: environment.cognito.userPoolId,
+    ClientId: environment.cognito.clientId,
   };
 
   ngOnInit(): void {
