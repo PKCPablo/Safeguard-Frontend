@@ -5,6 +5,6 @@ export const environment = {
     region: 'eu-central-1',
   },
   api: {
-    APIURL: 'https://u3sarvb1yk.execute-api.eu-central-1.amazonaws.com',
+    APIURL: 'https://1luly81ab8.execute-api.eu-central-1.amazonaws.com/Prod',
   },
 };

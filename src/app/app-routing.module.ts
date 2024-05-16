@@ -1,9 +1,9 @@
 import { createComponent, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { HomeComponent } from './home/home.component';
-import { MyProfileComponent } from './my-profile/my-profile.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { loginGuard } from './guards/login.guard';
 import { homeGuard } from './guards/home.guard';
 

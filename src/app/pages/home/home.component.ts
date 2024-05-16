@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiRestService } from '../services/api-rest.service';
-import { Producto } from '../models/producto';
+import { ApiRestService } from '../../services/api-rest.service';
+import { Producto } from '../../models/producto';
 
 @Component({
     selector: 'app-home',

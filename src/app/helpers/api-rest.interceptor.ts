@@ -5,14 +5,18 @@ import { AuthService } from '../services/auth.service';
 export const apiRestInterceptor: HttpInterceptorFn = (req, next) => {
     const authService = inject(AuthService);
 
-    let intReq = req;
-    const token = authService.getToken();
+    let authReq;
+    const authToken = authService.getToken();
 
-    if (token != null) {
-        intReq = req.clone({
-            headers: req.headers.set('Authorization', 'Bearer ' + token),
+    console.log(authToken);
+
+    if (authToken != null) {
+        authReq = req.clone({
+            setHeaders: {
+                Authorization: "Bearer " + authToken
+            }
         });
     }
 
-    return next(intReq);
+    return next(authReq);
 };

@@ -5,11 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MyProfileComponent } from './my-profile/my-profile.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 
 import {
     HttpClientModule,
@@ -20,8 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // Angular Material
-import { AppMaterialModule } from './app-material/app-material.module';
-import { apiRestInterceptor } from './interceptors/api-rest.interceptor';
+import { AppMaterialModule } from './app-material.module';
+import { apiRestInterceptor } from './helpers/api-rest.interceptor';
 
 @NgModule({
     declarations: [

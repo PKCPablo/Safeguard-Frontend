@@ -5,9 +5,9 @@ import {
     CognitoUser,
     CognitoUserPool,
 } from 'amazon-cognito-identity-js';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-login',

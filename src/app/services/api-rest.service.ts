@@ -13,10 +13,10 @@ export class ApiRestService {
     constructor(private httpClient: HttpClient) {}
 
     public getProductoById(id: string): Observable<Producto> {
-        return this.httpClient.get<Producto>(this.APIURL + '/producto/' + id);
+        return this.httpClient.get<Producto>(this.APIURL + '/product/' + id);
     }
 
     public getProductoList(): Observable<Producto[]> {
-        return this.httpClient.get<Producto[]>(this.APIURL + '/producto/');
+        return this.httpClient.get<Producto[]>(this.APIURL + '/product');
     }
 }
