@@ -5,19 +5,18 @@ import { Observable } from 'rxjs';
 import { Producto } from '../models/producto';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ApiRestService {
+    APIURL = environment.api.APIURL;
 
-  APIURL = environment.api.APIURL;
+    constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
+    public getProductoById(id: string): Observable<Producto> {
+        return this.httpClient.get<Producto>(this.APIURL + '/producto/' + id);
+    }
 
-  public getProductoById(id: string): Observable<Producto> {
-    return this.httpClient.get<Producto>(this.APIURL + '/producto/' + id)
-  }
-
-  public getProductoList(): Observable<Producto[]> {
-    return this.httpClient.get<Producto[]>(this.APIURL + '/producto/')
-  }
+    public getProductoList(): Observable<Producto[]> {
+        return this.httpClient.get<Producto[]>(this.APIURL + '/producto/');
+    }
 }

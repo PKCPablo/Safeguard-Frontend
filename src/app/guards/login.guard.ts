@@ -4,18 +4,17 @@ import { inject } from '@angular/core';
 import { map, take } from 'rxjs';
 
 export const loginGuard: CanActivateFn = (route, state) => {
-  const router = inject(Router);
-  const authService = inject(AuthService);
-  
-  return authService.isLoggedIn
-      .pipe(
+    const router = inject(Router);
+    const authService = inject(AuthService);
+
+    return authService.isLoggedIn.pipe(
         take(1),
         map((isLoggedIn: boolean) => {
-          if (isLoggedIn){
-            router.navigate(['/home']);
-            return false;
-          }
-          return true;
+            if (isLoggedIn) {
+                router.navigate(['/home']);
+                return false;
+            }
+            return true;
         })
-      );
+    );
 };

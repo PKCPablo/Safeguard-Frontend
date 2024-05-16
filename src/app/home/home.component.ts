@@ -3,24 +3,18 @@ import { ApiRestService } from '../services/api-rest.service';
 import { Producto } from '../models/producto';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
+    productos: Producto[];
 
-  productos: Producto[];
+    constructor(private apiRestService: ApiRestService) {}
 
-  constructor(
-    private apiRestService: ApiRestService
-  ) {
-
-  }
-
-  ngOnInit(): void {
-    this.apiRestService.getProductoList().subscribe(data => {
-      this.productos = data;
-    });
-  }
-
+    ngOnInit(): void {
+        this.apiRestService.getProductoList().subscribe((data) => {
+            this.productos = data;
+        });
+    }
 }
