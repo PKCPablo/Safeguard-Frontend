@@ -14,7 +14,7 @@ import { Iuser } from '../models/iuser';
     providedIn: 'root',
 })
 export class AuthService {
-    private loggedIn = new BehaviorSubject<boolean>(false);
+    private loggedIn: boolean;
 
     poolData = {
         UserPoolId: environment.cognito.userPoolId,
@@ -23,10 +23,12 @@ export class AuthService {
 
     userPool = new CognitoUserPool(this.poolData);
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) {
+        this.loggedIn = false;
+    }
 
-    get isLoggedIn() {
-        return this.loggedIn.asObservable();
+    get isAuth() {
+        return this.loggedIn;
     }
 
     login(email: string, password: string) {
@@ -46,7 +48,7 @@ export class AuthService {
 
         cognitoUser.authenticateUser(authDetails, {
             onSuccess: (result) => {
-                this.loggedIn.next(true);
+                this.loggedIn = true
                 localStorage.setItem(
                     'idToken',
                     result.getIdToken().getJwtToken()
@@ -63,7 +65,7 @@ export class AuthService {
         var currentUser = this.userPool.getCurrentUser();
         currentUser.signOut();
 
-        this.loggedIn.next(false);
+        this.loggedIn = false;
         localStorage.removeItem('idToken');
 
         this.router.navigate(['']);

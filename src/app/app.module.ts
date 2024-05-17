@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 
 import {
@@ -16,7 +17,7 @@ import {
     provideHttpClient,
     withInterceptors,
 } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // Angular Material
@@ -30,13 +31,14 @@ import { apiRestInterceptor } from './helpers/api-rest.interceptor';
         SignupComponent,
         HomeComponent,
         NavbarComponent,
+        SidebarComponent,
         MyProfileComponent,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        FormsModule,
+        ReactiveFormsModule,
         AppRoutingModule,
         AppMaterialModule,
     ],

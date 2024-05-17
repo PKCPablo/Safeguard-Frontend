@@ -2,12 +2,84 @@
 
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-html,
-body {
-  height: 100%;
+/* GLOBAL STYLES */
+
+:root {
+  --color-primary: #673AB7;
+  --color-accent: #FFD740;
+  --color-warn: #F44336;
+
+  --color-title: white;
+}
+
+* {
+  font-family: Roboto;
+  font-size: medium;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  scroll-behavior: smooth;
+  padding-right: 0 !important;
+}
+
+#app-component-root {
+  padding: 25px;
+  margin-top: 50px;
+}
+
+/* src/app/pages/signup/signup.component.css */
+/* src/app/pages/login/login.component.css */
+
+.auth-component-root {
+  padding: 56px;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-component-root mat-card {
+  padding: 5px;
+}
+
+.auth-component-root mat-form-field {
+  width: 300px;
+}
+
+.auth-component-root mat-card-content {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-component-root mat-card-actions {
+  margin-top: -25px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* src/app/shared/navbar/navbar.component.css */
+
+.navbar-component-root mat-toolbar{
+  background-color: var(--color-primary);
+}
+
+.navbar-component-root .title {
+  color: var(--color-title) !important;
+}
+
+.navbar-component-root .topnav-button {
+  margin-left: 10px;
+}
+
+.navbar-component-root .flexExpand {
+  flex: 1 1 auto;
+}
+
+/* src/app/shared/sidebar/sidebar.component.css */
+
+.sidebar-component-root .sidebar {
+  width: auto;
+  height: 100%;
+  background: #eee;
 }

@@ -7,14 +7,9 @@ export const loginGuard: CanActivateFn = (route, state) => {
     const router = inject(Router);
     const authService = inject(AuthService);
 
-    return authService.isLoggedIn.pipe(
-        take(1),
-        map((isLoggedIn: boolean) => {
-            if (isLoggedIn) {
-                router.navigate(['/home']);
-                return false;
-            }
-            return true;
-        })
-    );
+    if (!authService.isAuth) {
+        return true;
+    }
+
+    return router.createUrlTree(["/home"]);
 };
