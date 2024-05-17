@@ -32,7 +32,7 @@ body {
 /* src/app/pages/login/login.component.css */
 
 .auth-component-root {
-  padding: 56px;
+  padding: 150px;
   display: flex;
   justify-content: center;
 }

@@ -24,7 +24,8 @@ export class AuthService {
     userPool = new CognitoUserPool(this.poolData);
 
     constructor(private router: Router) {
-        this.loggedIn = false;
+        if(localStorage.getItem("idToken")) {this.loggedIn = true;}
+        else {this.loggedIn = false;}
     }
 
     get isAuth() {
