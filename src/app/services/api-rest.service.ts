@@ -12,11 +12,19 @@ export class ApiRestService {
 
     constructor(private httpClient: HttpClient) {}
 
-    public getProductoById(id: string): Observable<Producto> {
-        return this.httpClient.get<Producto>(this.APIURL + '/product/' + id);
+    public retrieveProduct(id: string): Observable<Producto> {
+        return this.httpClient.get<Producto>(`${this.APIURL}/product/${id}`);
     }
 
-    public getProductoList(): Observable<Producto[]> {
-        return this.httpClient.get<Producto[]>(this.APIURL + '/product');
+    public retrieveProducts(): Observable<Producto[]> {
+        return this.httpClient.get<Producto[]>(`${this.APIURL}/product`);
+    }
+
+    public createProduct(data: {}): Observable<Producto> {
+        return this.httpClient.post<Producto>(`${this.APIURL}/product`, data)
+    }
+
+    public updateProduct(id:string, data: {}): Observable<Producto> {
+        return this.httpClient.put<Producto>(`${this.APIURL}/product/${id}`, data)
     }
 }

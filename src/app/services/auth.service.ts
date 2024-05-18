@@ -15,6 +15,7 @@ import { Iuser } from '../models/iuser';
 })
 export class AuthService {
     private loggedIn: boolean;
+    private currentUser: CognitoUser;
 
     poolData = {
         UserPoolId: environment.cognito.userPoolId,
@@ -24,12 +25,21 @@ export class AuthService {
     userPool = new CognitoUserPool(this.poolData);
 
     constructor(private router: Router) {
-        if(localStorage.getItem("idToken")) {this.loggedIn = true;}
-        else {this.loggedIn = false;}
+        if (localStorage.getItem('idToken')) {
+            this.loggedIn = true;
+        } else {
+            this.loggedIn = false;
+        }
+
+        this.currentUser = null;
     }
 
     get isAuth() {
         return this.loggedIn;
+    }
+
+    get authUser(){
+        return this.currentUser;
     }
 
     login(email: string, password: string) {
@@ -49,7 +59,7 @@ export class AuthService {
 
         cognitoUser.authenticateUser(authDetails, {
             onSuccess: (result) => {
-                this.loggedIn = true
+                this.loggedIn = true;
                 localStorage.setItem(
                     'idToken',
                     result.getIdToken().getJwtToken()
@@ -67,12 +77,13 @@ export class AuthService {
         currentUser.signOut();
 
         this.loggedIn = false;
+        this.currentUser = null;
         localStorage.removeItem('idToken');
 
         this.router.navigate(['']);
     }
 
-    register(
+    signup(
         email: string,
         givenName: string,
         nickname: string,
@@ -106,7 +117,19 @@ export class AuthService {
         this.router.navigate(['/login']);
     }
 
-    getToken(): string {
+    getJwtIdToken(): string {
         return localStorage.getItem('idToken');
+    }
+
+    loadCurrentUser(): void {
+        if (this.currentUser != null) return;
+
+        this.userPool.getCurrentUser().getSession((err: any, session: any) => {
+            if (err) {
+                alert(err.message || JSON.stringify(err));
+                return;
+            }
+            this.currentUser = this.userPool.getCurrentUser();
+        });
     }
 }

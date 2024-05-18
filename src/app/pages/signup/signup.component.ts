@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   onRegister(): void {
     console.log(this.signupForm.value)
-    this.authService.register(
+    this.authService.signup(
       this.signupForm.value['email'],
       this.signupForm.value['givenName'],
       this.signupForm.value['nickname'],

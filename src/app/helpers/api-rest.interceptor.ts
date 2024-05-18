@@ -6,7 +6,7 @@ export const apiRestInterceptor: HttpInterceptorFn = (req, next) => {
     const authService = inject(AuthService);
 
     let authReq;
-    const authToken = authService.getToken();
+    const authToken = authService.getJwtIdToken();
 
     console.log(authToken);
 
