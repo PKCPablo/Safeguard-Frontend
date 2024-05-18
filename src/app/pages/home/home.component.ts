@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiRestService } from '../../services/api-rest.service';
-import { Producto } from '../../models/producto';
+import { Product } from '../../models/product';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
     styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-    productos: Producto[];
+    productos: Product[];
 
     username: String;
 

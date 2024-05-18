@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Producto } from '../models/producto';
+import { Product } from '../models/product';
 
 @Injectable({
     providedIn: 'root',
@@ -12,19 +12,19 @@ export class ApiRestService {
 
     constructor(private httpClient: HttpClient) {}
 
-    public retrieveProduct(id: string): Observable<Producto> {
-        return this.httpClient.get<Producto>(`${this.APIURL}/product/${id}`);
+    public retrieveProduct(id: string): Observable<Product> {
+        return this.httpClient.get<Product>(`${this.APIURL}/product/${id}`);
     }
 
-    public retrieveProducts(): Observable<Producto[]> {
-        return this.httpClient.get<Producto[]>(`${this.APIURL}/product`);
+    public retrieveProducts(): Observable<Product[]> {
+        return this.httpClient.get<Product[]>(`${this.APIURL}/product`);
     }
 
-    public createProduct(data: {}): Observable<Producto> {
-        return this.httpClient.post<Producto>(`${this.APIURL}/product`, data)
+    public writeProduct(product: Product): Observable<Product> {
+        return this.httpClient.post<Product>(`${this.APIURL}/product`, product);
     }
 
-    public updateProduct(id:string, data: {}): Observable<Producto> {
-        return this.httpClient.put<Producto>(`${this.APIURL}/product/${id}`, data)
+    public deleteProduct(id: string): Observable<Product> {
+        return this.httpClient.delete<Product>(`${this.APIURL}/product/${id}`);
     }
 }
