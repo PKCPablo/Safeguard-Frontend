@@ -7,6 +7,7 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { loginGuard } from './guards/login.guard';
 import { homeGuard } from './guards/home.guard';
 import { AccountComponent } from './pages/account/account.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [homeGuard] },
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'signup', component: SignupComponent, canActivate: [loginGuard] },
     { path: 'home', component: HomeComponent, canActivate: [homeGuard] },
     { path: 'account', component: AccountComponent, canActivate: [homeGuard] },
+    { path: 'payment', component: PaymentComponent, canActivate: [homeGuard] },
     {
         path: 'my-profile',
         component: MyProfileComponent,

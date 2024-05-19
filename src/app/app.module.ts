@@ -12,6 +12,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { AccountComponent } from './pages/account/account.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 import { InfoDialogComponent } from './shared/info-dialog/info-dialog.component';
 
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -32,6 +33,7 @@ import { apiRestInterceptor } from './helpers/api-rest.interceptor';
         SidebarComponent,
         MyProfileComponent,
         AccountComponent,
+        PaymentComponent,
         InfoDialogComponent,
     ],
     imports: [
