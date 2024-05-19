@@ -9,6 +9,8 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Iuser } from '../models/iuser';
+import { AccountService } from './account.service';
+import { CreateAccountRequest } from '../templates/account/create-account-request';
 
 @Injectable({
     providedIn: 'root',
@@ -24,7 +26,7 @@ export class AuthService {
 
     userPool = new CognitoUserPool(this.poolData);
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private accountService: AccountService) {
         if (localStorage.getItem('idToken')) {
             this.loggedIn = true;
         } else {
@@ -104,10 +106,18 @@ export class AuthService {
                 return;
             }
             var newUser = result.user;
-            console.log(JSON.stringify(newUser));
-            alert('Te hemos enviado un correo para activar tu cuenta.');
+
+            var request: CreateAccountRequest;
+
+            request.userId = result.user.getUsername();
+            request.balance = 0;
+            request.paymentsIds = [];
+
+            this.accountService.writeAccount(request).subscribe(() => {
+                alert('Te hemos enviado un correo para activar tu cuenta.');
+                this.router.navigate(['/login']);
+            });
         });
-        this.router.navigate(['/login']);
     }
 
     getJwtIdToken(): string {

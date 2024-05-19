@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AccountService } from '../../services/account.service';
 
 @Component({
     selector: 'app-signup',
@@ -12,7 +13,8 @@ export class SignupComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private authService: AuthService
+        private authService: AuthService,
+        private accountService: AccountService
     ) {}
 
     ngOnInit(): void {

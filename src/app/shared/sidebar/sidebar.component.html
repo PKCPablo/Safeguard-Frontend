@@ -1,8 +1,25 @@
-<mat-sidenav-container class="sidebar">
-    <mat-sidenav mode="side" opened>
-        <p> Sidenav content </p>
+<div class="sidebar-component-root">
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" opened class="container">
+      <div class="sidenav-div">
+        <button mat-button routerLink="/account">
+          <mat-icon fontIcon="account_balance"></mat-icon>
+          Cuenta
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-button routerLink="/paymentHistory">
+          <mat-icon fontIcon="manage_search"></mat-icon>
+          Historial de pagos
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-button routerLink="/home">
+          <mat-icon fontIcon="home"></mat-icon>
+          Div 3
+        </button>
+      </div>
     </mat-sidenav>
     <mat-sidenav-content id="app-component-root">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
+</div>

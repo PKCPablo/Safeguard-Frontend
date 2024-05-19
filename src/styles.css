@@ -10,11 +10,14 @@
   --color-warn: #F44336;
 
   --color-title: white;
+  --color-words: black;
+
+  --color-sidebar: white;
 }
 
 * {
   font-family: Roboto;
-  font-size: medium;
+  font-size: large;
 }
 
 body {
@@ -24,8 +27,9 @@ body {
 }
 
 #app-component-root {
-  padding: 25px;
-  margin-top: 50px;
+  padding: 50px;
+  margin-top: 25px;
+  min-height: 1000px;
 }
 
 /* src/app/pages/signup/signup.component.css */
@@ -70,6 +74,7 @@ body {
 
 .navbar-component-root .topnav-button {
   margin-left: 10px;
+  color: var(--color-words);
 }
 
 .navbar-component-root .flexExpand {
@@ -78,8 +83,38 @@ body {
 
 /* src/app/shared/sidebar/sidebar.component.css */
 
-.sidebar-component-root .sidebar {
+.sidebar-component-root {
   width: auto;
-  height: 100%;
-  background: #eee;
 }
+
+.sidebar-component-root .container {
+  padding-top: 30px;
+  background-color: var(--color-primary);
+}
+
+.sidebar-component-root .sidenav-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-component-root button {
+  min-width: 125px;
+  min-height: 50px;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  display: flex;
+  justify-content: left;
+  color: var(--color-title) !important;
+}
+
+/* src/app/pages/account/account.component.css */
+
+.account-component-root {}
+
+/* src/app/pages/payment-history/payment-history.component.css */
+
+.payment-history-component-root {}
+
+/* src/app/pages/my-profile/my-profile.component.css */
+
+.my-profile-component-root {}

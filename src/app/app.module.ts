@@ -11,12 +11,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
+import { AccountComponent } from './pages/account/account.component';
 
-import {
-    HttpClientModule,
-    provideHttpClient,
-    withInterceptors,
-} from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
@@ -33,6 +30,7 @@ import { apiRestInterceptor } from './helpers/api-rest.interceptor';
         NavbarComponent,
         SidebarComponent,
         MyProfileComponent,
+        AccountComponent,
     ],
     imports: [
         BrowserModule,

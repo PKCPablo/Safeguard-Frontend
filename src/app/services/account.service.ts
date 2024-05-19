@@ -19,6 +19,12 @@ export class AccountService {
         return this.httpClient.get<RetrieveAccountResponse>(`${this.APIURL}/account/${id}`);
     }
 
+    public retrieveAccountByUserId(userId: string): Observable<RetrieveAccountResponse> {
+        return this.httpClient.get<RetrieveAccountResponse>(
+            `${this.APIURL}/account/accountByUserId/${userId}`
+        );
+    }
+
     // @RequestMapping(path = "/account", method = RequestMethod.GET)
     public retrieveAccounts(): Observable<RetrieveAccountsResponse> {
         return this.httpClient.get<RetrieveAccountsResponse>(`${this.APIURL}/account`);
@@ -33,4 +39,6 @@ export class AccountService {
     public deleteAccount(id: string): Observable<void> {
         return this.httpClient.delete<void>(`${this.APIURL}/account/${id}`);
     }
+
+    // @
 }
