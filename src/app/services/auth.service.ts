@@ -60,10 +60,7 @@ export class AuthService {
         cognitoUser.authenticateUser(authDetails, {
             onSuccess: (result) => {
                 this.loggedIn = true;
-                localStorage.setItem(
-                    'idToken',
-                    result.getIdToken().getJwtToken()
-                );
+                localStorage.setItem('idToken', result.getIdToken().getJwtToken());
                 this.loadCurrentUser();
                 this.router.navigate(['/home']);
             },
@@ -84,12 +81,7 @@ export class AuthService {
         this.router.navigate(['']);
     }
 
-    signup(
-        email: string,
-        givenName: string,
-        nickname: string,
-        password: string
-    ): void {
+    signup(email: string, givenName: string, nickname: string, password: string): void {
         var attrList = [];
         var iuser: Iuser = {
             email: email,

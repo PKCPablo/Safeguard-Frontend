@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Account } from '../models/account';
+import { RetrieveAccountResponse } from '../templates/account/retrieve-account-response';
+import { RetrieveAccountsResponse } from '../templates/account/retrieve-accounts-response';
+import { CreateAccountRequest } from '../templates/account/create-account-request';
 
 @Injectable({
     providedIn: 'root',
@@ -13,18 +15,18 @@ export class AccountService {
     constructor(private httpClient: HttpClient) {}
 
     // @RequestMapping(path = "/account/{id}", method = RequestMethod.GET)
-    public retrieveAccount(id: string): Observable<Account> {
-        return this.httpClient.get<Account>(`${this.APIURL}/account/${id}`);
+    public retrieveAccount(id: string): Observable<RetrieveAccountResponse> {
+        return this.httpClient.get<RetrieveAccountResponse>(`${this.APIURL}/account/${id}`);
     }
 
     // @RequestMapping(path = "/account", method = RequestMethod.GET)
-    public retrieveAccounts(): Observable<Account[]> {
-        return this.httpClient.get<Account[]>(`${this.APIURL}/account`);
+    public retrieveAccounts(): Observable<RetrieveAccountsResponse> {
+        return this.httpClient.get<RetrieveAccountsResponse>(`${this.APIURL}/account`);
     }
 
     // @RequestMapping(path = "/account", method = RequestMethod.POST)
-    public writeAccount(account: Account): Observable<Account> {
-        return this.httpClient.post<Account>(`${this.APIURL}/account`, account);
+    public writeAccount(request: CreateAccountRequest): Observable<void> {
+        return this.httpClient.post<void>(`${this.APIURL}/account`, request);
     }
 
     // @RequestMapping(path = "/account/{id}", method = RequestMethod.DELETE)
