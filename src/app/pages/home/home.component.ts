@@ -13,13 +13,19 @@ export class HomeComponent implements OnInit {
 
     username: String;
 
-    constructor(private apiRestService: ApiRestService, private authService: AuthService) {}
+    constructor(
+        private apiRestService: ApiRestService,
+        private authService: AuthService
+    ) {}
 
     ngOnInit(): void {
+        this.onLoad();
+        this.username = this.authService.authUser.getUsername();
+    }
+
+    onLoad() {
         this.apiRestService.retrieveProducts().subscribe((data) => {
             this.productos = data;
         });
-        
-        this.username = this.authService.authUser.getUsername();
     }
 }

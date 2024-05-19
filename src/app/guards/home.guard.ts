@@ -10,6 +10,6 @@ export const homeGuard: CanActivateFn = (route, state) => {
     if (authService.isAuth) {
         return true;
     }
-    
-    return router.createUrlTree(["/login"]);
+
+    return router.createUrlTree(['/login']);
 };

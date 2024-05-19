@@ -13,8 +13,8 @@ export const apiRestInterceptor: HttpInterceptorFn = (req, next) => {
     if (authToken != null) {
         authReq = req.clone({
             setHeaders: {
-                Authorization: "Bearer " + authToken
-            }
+                Authorization: 'Bearer ' + authToken,
+            },
         });
     }
 

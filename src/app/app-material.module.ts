@@ -22,7 +22,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
         MatFormFieldModule,
         MatTabsModule,
         MatListModule,
-        MatGridListModule
+        MatGridListModule,
     ],
 })
 export class AppMaterialModule {}

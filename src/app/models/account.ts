@@ -1,9 +1,9 @@
 export class Account {
-    id: number;
+    id: string;
     userId: string;
     balance: number;
 
-    constructor(id: number, userId: string, balance: number) {
+    constructor(id: string, userId: string, balance: number) {
         this.id = id;
         this.userId = userId;
         this.balance = balance;

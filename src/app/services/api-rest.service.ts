@@ -24,7 +24,7 @@ export class ApiRestService {
         return this.httpClient.post<Product>(`${this.APIURL}/product`, product);
     }
 
-    public deleteProduct(id: string): Observable<Product> {
-        return this.httpClient.delete<Product>(`${this.APIURL}/product/${id}`);
+    public deleteProduct(id: string): Observable<void> {
+        return this.httpClient.delete<void>(`${this.APIURL}/product/${id}`);
     }
 }

@@ -60,7 +60,7 @@ body {
 
 /* src/app/shared/navbar/navbar.component.css */
 
-.navbar-component-root mat-toolbar{
+.navbar-component-root mat-toolbar {
   background-color: var(--color-primary);
 }
 

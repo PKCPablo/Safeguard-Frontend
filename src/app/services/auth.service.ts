@@ -38,7 +38,7 @@ export class AuthService {
         return this.loggedIn;
     }
 
-    get authUser(){
+    get authUser() {
         return this.currentUser;
     }
 
@@ -64,6 +64,7 @@ export class AuthService {
                     'idToken',
                     result.getIdToken().getJwtToken()
                 );
+                this.loadCurrentUser();
                 this.router.navigate(['/home']);
             },
             onFailure: (err) => {
