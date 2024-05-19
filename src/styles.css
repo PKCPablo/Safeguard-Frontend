@@ -109,7 +109,11 @@ body {
 
 /* src/app/pages/account/account.component.css */
 
-.account-component-root {}
+.account-component-root {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
 
 /* src/app/pages/payment-history/payment-history.component.css */
 
@@ -118,3 +122,16 @@ body {
 /* src/app/pages/my-profile/my-profile.component.css */
 
 .my-profile-component-root {}
+
+/* src/app/shared/info-dialog/info-dialog.component.css */
+
+.info-dialog-component-root {
+  min-width: 350px;
+  min-height: 200px;
+  padding: 10px;
+}
+
+.info-dialog-component-root mat-dialog-actions {
+  display: flex;
+  justify-content: right;
+}

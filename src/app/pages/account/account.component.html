@@ -1,12 +1,15 @@
 <div class="account-component-root">
-    <mat-card>
-        <mat-card-content>
-            <mat-list>
-                <mat-list-item>Cuenta de {{account.userId}}</mat-list-item>
-                <mat-list-item>Id de la cuenta: {{account.id}}</mat-list-item>
-                <mat-list-item>Balance actual: {{account.balance}}</mat-list-item>
-                <mat-list-item>IDs de los pagos realizados: {{account.paymentsIds | json}}</mat-list-item>
-            </mat-list>
-        </mat-card-content>
-    </mat-card>
+    <mat-spinner *ngIf="isDataLoaded$ && !isDataLoaded$.closed"></mat-spinner>
+    <div *ngIf="isDataLoaded$ && isDataLoaded$.closed">
+        <mat-card>
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item>Cuenta de {{account.userId}}</mat-list-item>
+                    <mat-list-item>Id de la cuenta: {{account.id}}</mat-list-item>
+                    <mat-list-item>Balance actual: {{account.balance}}</mat-list-item>
+                    <mat-list-item>IDs de los pagos realizados: {{account.paymentsIds | json}}</mat-list-item>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

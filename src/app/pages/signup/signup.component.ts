@@ -11,11 +11,7 @@ import { AccountService } from '../../services/account.service';
 export class SignupComponent implements OnInit {
     signupForm: FormGroup;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private authService: AuthService,
-        private accountService: AccountService
-    ) {}
+    constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
 
     ngOnInit(): void {
         this.signupForm = this.formBuilder.group({

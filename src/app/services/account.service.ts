@@ -19,6 +19,7 @@ export class AccountService {
         return this.httpClient.get<RetrieveAccountResponse>(`${this.APIURL}/account/${id}`);
     }
 
+    // @RequestMapping(path = "/account/accountByUserId/{userId}")
     public retrieveAccountByUserId(userId: string): Observable<RetrieveAccountResponse> {
         return this.httpClient.get<RetrieveAccountResponse>(
             `${this.APIURL}/account/accountByUserId/${userId}`
@@ -31,8 +32,8 @@ export class AccountService {
     }
 
     // @RequestMapping(path = "/account", method = RequestMethod.POST)
-    public writeAccount(request: CreateAccountRequest): Observable<void> {
-        return this.httpClient.post<void>(`${this.APIURL}/account`, request);
+    public writeAccount(request: {}): Observable<RetrieveAccountResponse> {
+        return this.httpClient.post<RetrieveAccountResponse>(`${this.APIURL}/account`, request);
     }
 
     // @RequestMapping(path = "/account/{id}", method = RequestMethod.DELETE)

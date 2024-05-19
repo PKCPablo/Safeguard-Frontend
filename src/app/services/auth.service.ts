@@ -7,10 +7,10 @@ import {
 } from 'amazon-cognito-identity-js';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { Iuser } from '../models/iuser';
 import { AccountService } from './account.service';
-import { CreateAccountRequest } from '../templates/account/create-account-request';
+import { InfoDialogComponent } from '../shared/info-dialog/info-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
     providedIn: 'root',
@@ -26,7 +26,7 @@ export class AuthService {
 
     userPool = new CognitoUserPool(this.poolData);
 
-    constructor(private router: Router, private accountService: AccountService) {
+    constructor(private router: Router, private dialog: MatDialog) {
         if (localStorage.getItem('idToken')) {
             this.loggedIn = true;
         } else {
@@ -67,7 +67,7 @@ export class AuthService {
                 this.router.navigate(['/home']);
             },
             onFailure: (err) => {
-                alert(err.message || JSON.stringify(err));
+                this.openDialog(err.message || JSON.stringify(err));
             },
         });
     }
@@ -102,22 +102,13 @@ export class AuthService {
 
         this.userPool.signUp(email, password, attrList, [], (err, result) => {
             if (err) {
-                alert(err.message || JSON.stringify(err));
+                this.openDialog(err.message || JSON.stringify(err));
                 return;
             }
-            var newUser = result.user;
-
-            var request: CreateAccountRequest;
-
-            request.userId = result.user.getUsername();
-            request.balance = 0;
-            request.paymentsIds = [];
-
-            this.accountService.writeAccount(request).subscribe(() => {
-                alert('Te hemos enviado un correo para activar tu cuenta.');
-                this.router.navigate(['/login']);
-            });
         });
+
+        this.openDialog('Te hemos enviado un correo para activar tu cuenta.');
+        this.router.navigate(['/login']);
     }
 
     getJwtIdToken(): string {
@@ -129,10 +120,16 @@ export class AuthService {
 
         this.userPool.getCurrentUser().getSession((err: any, session: any) => {
             if (err) {
-                alert(err.message || JSON.stringify(err));
+                this.openDialog(err.message || JSON.stringify(err));
                 return;
             }
             this.currentUser = this.userPool.getCurrentUser();
         });
+    }
+
+    openDialog(data: String): void {
+        const dialogRef = this.dialog.open(InfoDialogComponent, { data });
+
+        dialogRef.afterClosed().subscribe();
     }
 }
