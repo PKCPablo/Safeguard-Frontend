@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { PaymentHistory } from '../models/payment-history';
 import { Observable } from 'rxjs';
 import { RetrievePaymentHistoryResponse } from '../templates/paymentHistory/retrieve-payment-history-response';
 import { RetrievePaymentHistoriesResponse } from '../templates/paymentHistory/retrieve-payment-histories-response';
