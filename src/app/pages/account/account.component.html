@@ -1,15 +1,41 @@
 <div class="account-component-root">
-    <mat-spinner *ngIf="isDataLoaded$ && !isDataLoaded$.closed"></mat-spinner>
+    <div style="display: flex; justify-content: center;">
+        <mat-spinner *ngIf="isDataLoaded$ && !isDataLoaded$.closed"></mat-spinner>
+    </div>
     <div *ngIf="isDataLoaded$ && isDataLoaded$.closed">
-        <mat-card>
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>Cuenta de {{account.userId}}</mat-list-item>
-                    <mat-list-item>Id de la cuenta: {{account.id}}</mat-list-item>
-                    <mat-list-item>Balance actual: {{account.balance}}</mat-list-item>
-                    <mat-list-item>IDs de los pagos realizados: {{account.paymentsIds | json}}</mat-list-item>
-                </mat-list>
-            </mat-card-content>
-        </mat-card>
+        <mat-grid-list cols="4" style="padding:10px" rowHeight="300px">
+            <mat-grid-tile colspan="2" rowspan="1">
+                <div style="display: flex; flex-direction: column;">
+                    <mat-card>
+                        <mat-card-content>
+                            <mat-list>
+                                <mat-list-item>Cuenta de {{account.userId}}</mat-list-item>
+                                <mat-list-item>Id de la cuenta: {{account.id}}</mat-list-item>
+                                <mat-list-item>Balance actual: {{account.balance}}€</mat-list-item>
+                                <mat-list-item>IDs de los pagos realizados: {{account.paymentsIds |
+                                    json}}</mat-list-item>
+                            </mat-list>
+                        </mat-card-content>
+                    </mat-card>
+                    <button mat-flat-button color="accent" routerLink="/payment"
+                        style="width: 100%; margin-top: 10px; display: flex; justify-content: center;">
+                        Hacer un pago
+                    </button>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2" rowspan="2">
+                <mat-card class="payments">
+                    <mat-card-content>
+                        <div *ngIf="account.paymentsIds == null" class="noPaymentDone">No se han realizado pagos todavía
+                        </div>
+                        <div *ngIf="account.paymentsIds">
+                            <mat-list *ngFor="let paymentId of account.paymentsIds">
+                                <mat-list-item>{{paymentId}}</mat-list-item>
+                            </mat-list>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
     </div>
 </div>

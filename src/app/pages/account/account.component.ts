@@ -32,13 +32,15 @@ export class AccountComponent implements OnInit {
     }
 
     createNewAccount() {
+        this.updateAccount(this.username, 0, ['']);
+    }
+
+    updateAccount(username: string, balance: number, paymentsIds: string[]) {
         let obj: any = {};
 
-        obj['userId'] = this.username;
-        obj['balance'] = 0;
-        obj['paymentsIds'] = [''];
-
-        console.log(obj);
+        obj['userId'] = username;
+        obj['balance'] = balance;
+        obj['paymentsIds'] = paymentsIds;
 
         this.accountService.writeAccount(obj).subscribe({
             next: (data) => {
