@@ -12,6 +12,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     exports: [
@@ -27,6 +30,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatGridListModule,
         MatDialogModule,
         MatProgressSpinnerModule,
+        MatStepperModule,
+        MatAutocompleteModule,
+        MatCheckboxModule,
     ],
 })
 export class AppMaterialModule {}

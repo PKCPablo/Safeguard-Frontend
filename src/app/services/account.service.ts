@@ -10,7 +10,7 @@ import { CreateAccountRequest } from '../templates/account/create-account-reques
     providedIn: 'root',
 })
 export class AccountService {
-    APIURL = environment.api.APIURL;
+    private APIURL = environment.api.APIURL;
 
     constructor(private httpClient: HttpClient) {}
 

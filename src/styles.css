@@ -133,9 +133,19 @@ body {
   justify-content: center;
 }
 
-/* src/app/pages/payment-history/payment-history.component.css */
+/* src/app/pages/payment/payment.component.css */
 
-.payment-history-component-root {}
+.payment-component-root form {
+  padding: 20px !important;
+}
+
+.payment-component-root button {
+  margin-left: 5px;
+}
+
+.payment-component-root .finishedPayment {
+  pointer-events: none !important;
+}
 
 /* src/app/pages/my-profile/my-profile.component.css */
 
