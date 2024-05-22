@@ -58,6 +58,22 @@
                     </mat-card>
                 </div>
             </mat-grid-tile>
+            <mat-grid-tile colspan="2" rowspan="1">
+                <div class="add-money mat-elevation-z8">
+                    <form [formGroup]="addMoneyForm" (ngSubmit)="addMoney()" novalidate>
+                        <mat-card class="add-money-card">
+                            <mat-card-content style="display: flex; margin: 5px;">
+                                <mat-form-field>
+                                    <mat-label> Introduzca cantidad </mat-label>
+                                    <input matInput formControlName="money" type="number">
+                                </mat-form-field>
+                                <span style="flex: 1 1 auto;"></span>
+                                <button mat-raised-button color="accent"> Añadir dinero </button>
+                            </mat-card-content>
+                        </mat-card>
+                    </form>
+                </div>
+            </mat-grid-tile>
         </mat-grid-list>
     </div>
 </div>
