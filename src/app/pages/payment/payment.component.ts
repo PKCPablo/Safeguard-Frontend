@@ -25,7 +25,7 @@ export class PaymentComponent implements OnInit {
     acceptedPayment: boolean;
 
     userAccount: RetrieveAccountResponse;
-    selectedAccount: RetrieveAccountResponse = { id: '', userId: '', balance: '', paymentsIds: [] };
+    selectedAccount: RetrieveAccountResponse = { id: '', userId: '', balance: 0, paymentsIds: [] };
     paymentDone: RetrievePaymentResponse;
 
     maxPaymentAmount: number = 1;
@@ -48,7 +48,7 @@ export class PaymentComponent implements OnInit {
                 this.accountList = this.accountList.filter((account) => {
                     if (account.userId.includes(username)) {
                         this.userAccount = account;
-                        this.maxPaymentAmount = Number.parseInt(account.balance);
+                        this.maxPaymentAmount = account.balance;
                         return false;
                     }
 
@@ -58,18 +58,21 @@ export class PaymentComponent implements OnInit {
                 this.options = this.accountList;
 
                 this.onLoad();
+
+                this.paymentFormFirstStep.addValidators([
+                    Validators.minLength(1),
+                    Validators.required,
+                ]);
+                this.paymentFormSecondStep.addValidators([
+                    Validators.required,
+                    Validators.max(this.maxPaymentAmount),
+                    Validators.min(1),
+                ]);
             },
             error: (error) => {
                 this.authService.openDialog(error);
             },
         });
-
-        this.paymentFormFirstStep.addValidators([Validators.minLength(1), Validators.required]);
-        this.paymentFormSecondStep.addValidators([
-            Validators.required,
-            Validators.max(this.maxPaymentAmount),
-            Validators.min(1),
-        ]);
 
         this.acceptedPayment = false;
     }
@@ -106,11 +109,13 @@ export class PaymentComponent implements OnInit {
     }
 
     makePayment(): void {
+        var amountToPay = this.paymentFormSecondStep.value as number;
+
         let obj: any = {};
 
         obj['accountFromId'] = this.userAccount.id;
         obj['accountToId'] = this.selectedAccount.id;
-        obj['amount'] = this.paymentFormSecondStep.value as number;
+        obj['amount'] = amountToPay;
 
         this.paymentService.writePayment(obj).subscribe({
             next: (data) => {
@@ -120,15 +125,22 @@ export class PaymentComponent implements OnInit {
 
                 this.userAccount.paymentsIds.push(data.id);
 
-                let obj: any = {};
+                this.userAccount.balance = this.userAccount.balance - amountToPay;
+                this.selectedAccount.balance = this.selectedAccount.balance + amountToPay;
 
-                obj['userId'] = this.userAccount.userId;
-                obj['balance'] = this.userAccount.balance;
-                obj['paymentsIds'] = this.userAccount.paymentsIds;
-
-                this.accountService.updateAccount(obj, this.userAccount.id).subscribe({
+                this.updateAccount(this.userAccount).subscribe({
                     next: (result) => {
-                        this.router.navigate(['/home']);
+                        console.log('User Account: ' + result.userId + ' ' + result.balance);
+                        this.updateAccount(this.selectedAccount).subscribe({
+                            next: (res) => {
+                                console.log('Selected Account: ' + res.userId + ' ' + res.balance);
+                                this.router.navigate(['/home']);
+                            },
+                            error: (error) => {
+                                this.authService.openDialog(error);
+                                this.router.navigate(['/home']);
+                            },
+                        });
                     },
                     error: (error) => {
                         this.authService.openDialog(error);
@@ -140,5 +152,15 @@ export class PaymentComponent implements OnInit {
                 console.log(error);
             },
         });
+    }
+
+    updateAccount(account: RetrieveAccountResponse): Observable<RetrieveAccountResponse> {
+        let obj: any = {};
+
+        obj['userId'] = account.userId;
+        obj['balance'] = account.balance;
+        obj['paymentsIds'] = account.paymentsIds;
+
+        return this.accountService.updateAccount(obj, account.id);
     }
 }

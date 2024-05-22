@@ -8,7 +8,7 @@ export const apiRestInterceptor: HttpInterceptorFn = (req, next) => {
     let authReq;
     const authToken = authService.getJwtIdToken();
 
-    console.log(authToken);
+    //console.log(authToken);
 
     if (authToken != null) {
         authReq = req.clone({

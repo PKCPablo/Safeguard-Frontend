@@ -159,10 +159,6 @@ body {
   pointer-events: none !important;
 }
 
-/* src/app/pages/my-profile/my-profile.component.css */
-
-.my-profile-component-root {}
-
 /* src/app/shared/info-dialog/info-dialog.component.css */
 
 .info-dialog-component-root {

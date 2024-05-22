@@ -1,6 +1,6 @@
 export interface RetrieveAccountResponse {
     id: string;
     userId: string;
-    balance: string;
+    balance: number;
     paymentsIds: string[];
 }

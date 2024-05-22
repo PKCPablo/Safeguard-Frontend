@@ -8,12 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { HomeComponent } from './pages/home/home.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { AccountComponent } from './pages/account/account.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { InfoDialogComponent } from './shared/info-dialog/info-dialog.component';
+import { apiRestInterceptor } from './helpers/api-rest.interceptor';
 
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 // Angular Material
 import { AppMaterialModule } from './app-material.module';
-import { apiRestInterceptor } from './helpers/api-rest.interceptor';
 
 @NgModule({
     declarations: [
@@ -31,7 +30,6 @@ import { apiRestInterceptor } from './helpers/api-rest.interceptor';
         HomeComponent,
         NavbarComponent,
         SidebarComponent,
-        MyProfileComponent,
         AccountComponent,
         PaymentComponent,
         InfoDialogComponent,

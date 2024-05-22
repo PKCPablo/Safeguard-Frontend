@@ -4,10 +4,6 @@
       <h4>Safeguard</h4>
     </button>
     <span class="flexExpand"></span>
-    <button mat-fab extended class="topnav-button" routerLink="/my-profile" *ngIf="isLoggedIn">
-      <mat-icon fontIcon="account_circle"></mat-icon>
-      Mi Perfil
-    </button>
     <button mat-fab extended class="topnav-button" (click)="onLogout()" *ngIf="isLoggedIn">
       <mat-icon fontIcon="exit_to_app"></mat-icon>
       Log Out
