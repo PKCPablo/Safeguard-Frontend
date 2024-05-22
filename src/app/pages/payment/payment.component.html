@@ -22,7 +22,7 @@
                     <input matInput [formControl]="paymentFormSecondStep" type="number">
                     @if (paymentFormSecondStep.hasError('min')) {
                     <mat-error style="margin-top: 5px; margin-bottom: 10px; font-size: small;">
-                        No puedes hacer un pago de 0 euros.
+                        No puedes hacer un pago de 0 euros o inferior.
                     </mat-error>
                     }
                     @if (paymentFormSecondStep.hasError('max')) {
@@ -38,7 +38,8 @@
                     <button mat-fab extended matStepperPrevious type="button">
                         Atrás
                     </button>
-                    <button mat-fab extended matStepperNext [disabled]="maxPaymentAmount == 0" type="button">
+                    <button mat-fab extended matStepperNext
+                        [disabled]="maxPaymentAmount == 0 || paymentFormSecondStep.invalid" type="button">
                         Siguiente
                     </button>
                 </div>

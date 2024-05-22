@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class PaymentComponent implements OnInit {
     paymentFormFirstStep = new FormControl<string | RetrieveAccountResponse>('');
-    paymentFormSecondStep = new FormControl<number>(0);
+    paymentFormSecondStep = new FormControl<number>(1);
 
     accountList: RetrieveAccountResponse[];
     options: RetrieveAccountResponse[];
