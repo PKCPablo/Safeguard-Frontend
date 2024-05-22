@@ -151,6 +151,7 @@ body {
 }
 
 .payment-component-root button {
+  margin-top: 40px;
   margin-left: 5px;
 }
 

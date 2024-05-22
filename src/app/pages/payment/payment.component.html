@@ -16,14 +16,31 @@
         </mat-step>
 
         <mat-step [stepControl]="paymentFormSecondStep" label="Introducir el importe">
-            <form [formGroup]="paymentFormSecondStep">
-                <mat-form-field>
+            <form>
+                <mat-form-field *ngIf="maxPaymentAmount > 0">
                     <mat-label>Cantidad</mat-label>
-                    <input matInput placeholder="100" formControlName="amount" required type="number" min="1">
+                    <input matInput [formControl]="paymentFormSecondStep" type="number">
+                    @if (paymentFormSecondStep.hasError('min')) {
+                    <mat-error style="margin-top: 5px; margin-bottom: 10px; font-size: small;">
+                        No puedes hacer un pago de 0 euros.
+                    </mat-error>
+                    }
+                    @if (paymentFormSecondStep.hasError('max')) {
+                    <mat-error style="margin-top: 5px; margin-bottom: 10px; font-size: small;">
+                        No tienes suficiente dinero para realizar la operación.
+                    </mat-error>
+                    }
                 </mat-form-field>
-                <div style="display: flex;">
-                    <button mat-fab extended matStepperPrevious type="button">Atrás</button>
-                    <button mat-fab extended matStepperNext type="button">Siguiente</button>
+                <div *ngIf="maxPaymentAmount == 0">
+                    No tienes dinero en la cuenta para efectuar un pago.
+                </div>
+                <div style=" display: flex;">
+                    <button mat-fab extended matStepperPrevious type="button">
+                        Atrás
+                    </button>
+                    <button mat-fab extended matStepperNext [disabled]="maxPaymentAmount == 0" type="button">
+                        Siguiente
+                    </button>
                 </div>
 
             </form>

@@ -16,10 +16,7 @@ import { Router } from '@angular/router';
 })
 export class PaymentComponent implements OnInit {
     paymentFormFirstStep = new FormControl<string | RetrieveAccountResponse>('');
-
-    paymentFormSecondStep = this.formBuilder.group({
-        amount: ['', Validators.required],
-    });
+    paymentFormSecondStep = new FormControl<number>(0);
 
     accountList: RetrieveAccountResponse[];
     options: RetrieveAccountResponse[];
@@ -30,6 +27,8 @@ export class PaymentComponent implements OnInit {
     userAccount: RetrieveAccountResponse;
     selectedAccount: RetrieveAccountResponse = { id: '', userId: '', balance: '', paymentsIds: [] };
     paymentDone: RetrievePaymentResponse;
+
+    maxPaymentAmount: number = 1;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -49,6 +48,7 @@ export class PaymentComponent implements OnInit {
                 this.accountList = this.accountList.filter((account) => {
                     if (account.userId.includes(username)) {
                         this.userAccount = account;
+                        this.maxPaymentAmount = Number.parseInt(account.balance);
                         return false;
                     }
 
@@ -65,6 +65,11 @@ export class PaymentComponent implements OnInit {
         });
 
         this.paymentFormFirstStep.addValidators([Validators.minLength(1), Validators.required]);
+        this.paymentFormSecondStep.addValidators([
+            Validators.required,
+            Validators.max(this.maxPaymentAmount),
+            Validators.min(1),
+        ]);
 
         this.acceptedPayment = false;
     }
@@ -105,7 +110,7 @@ export class PaymentComponent implements OnInit {
 
         obj['accountFromId'] = this.userAccount.id;
         obj['accountToId'] = this.selectedAccount.id;
-        obj['amount'] = this.paymentFormSecondStep.value['amount'];
+        obj['amount'] = this.paymentFormSecondStep.value as number;
 
         this.paymentService.writePayment(obj).subscribe({
             next: (data) => {
