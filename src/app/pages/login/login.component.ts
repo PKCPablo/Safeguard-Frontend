@@ -26,6 +26,6 @@ export class LoginComponent implements OnInit {
     }
 
     saltarLogin() {
-        this.authService.login('pablinelchulin@gmail.com', 'Tengo1hermano!');
+        this.authService.login('pablinelchulin@gmail.com', 'XXXXX');
     }
 }
