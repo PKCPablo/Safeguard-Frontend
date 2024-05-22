@@ -68,7 +68,8 @@
                                     <input matInput formControlName="money" type="number">
                                 </mat-form-field>
                                 <span style="flex: 1 1 auto;"></span>
-                                <button mat-raised-button color="accent"> Añadir dinero </button>
+                                <button mat-raised-button color="accent" [disabled]="addMoneyForm.invalid"> Añadir
+                                    dinero </button>
                             </mat-card-content>
                         </mat-card>
                     </form>
