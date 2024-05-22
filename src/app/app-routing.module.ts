@@ -10,7 +10,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [homeGuard] },
+    { path: '', component: LoginComponent, canActivate: [loginGuard] },
     { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
     { path: 'signup', component: SignupComponent, canActivate: [loginGuard] },
     { path: 'home', component: HomeComponent, canActivate: [homeGuard] },
