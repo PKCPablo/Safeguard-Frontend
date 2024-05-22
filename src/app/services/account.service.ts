@@ -32,8 +32,16 @@ export class AccountService {
     }
 
     // @RequestMapping(path = "/account", method = RequestMethod.POST)
-    public writeAccount(request: {}): Observable<RetrieveAccountResponse> {
+    public createAccount(request: {}): Observable<RetrieveAccountResponse> {
         return this.httpClient.post<RetrieveAccountResponse>(`${this.APIURL}/account`, request);
+    }
+
+    // @RequestMapping(path = "/account/{id}", method = RequestMethod.PUT)
+    public updateAccount(request: {}, id: string): Observable<RetrieveAccountResponse> {
+        return this.httpClient.put<RetrieveAccountResponse>(
+            `${this.APIURL}/account/${id}`,
+            request
+        );
     }
 
     // @RequestMapping(path = "/account/{id}", method = RequestMethod.DELETE)

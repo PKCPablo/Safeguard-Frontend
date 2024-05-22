@@ -25,8 +25,8 @@ export class PaymentService {
     }
 
     // @RequestMapping(path = "/payment", method = RequestMethod.POST)
-    public writePayment(request: CreatePaymentRequest): Observable<void> {
-        return this.httpClient.post<void>(`${this.APIURL}/payment`, request);
+    public writePayment(request: CreatePaymentRequest): Observable<RetrievePaymentResponse> {
+        return this.httpClient.post<RetrievePaymentResponse>(`${this.APIURL}/payment`, request);
     }
 
     // @RequestMapping(path = "/payment/{id}", method = RequestMethod.DELETE)

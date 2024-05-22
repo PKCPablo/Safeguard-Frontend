@@ -26,28 +26,6 @@ export class AccountComponent implements OnInit {
                 this.account = data;
             },
             error: (error) => {
-                this.createNewAccount();
-            },
-        });
-    }
-
-    createNewAccount() {
-        this.updateAccount(this.username, 0, ['']);
-    }
-
-    updateAccount(username: string, balance: number, paymentsIds: string[]) {
-        let obj: any = {};
-
-        obj['userId'] = username;
-        obj['balance'] = balance;
-        obj['paymentsIds'] = paymentsIds;
-
-        this.accountService.writeAccount(obj).subscribe({
-            next: (data) => {
-                console.log(data);
-                this.account = data;
-            },
-            error: (error) => {
                 console.log(error);
             },
         });

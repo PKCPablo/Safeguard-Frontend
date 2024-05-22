@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { Subscription } from 'rxjs';
+import { AccountService } from '../../services/account.service';
 
 @Component({
     selector: 'app-home',
@@ -10,11 +11,12 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
     name: String;
+    username: string;
     attributes: CognitoUserAttribute[];
 
     isDataLoaded$: boolean;
 
-    constructor(private authService: AuthService) {
+    constructor(private authService: AuthService, private accountService: AccountService) {
         this.isDataLoaded$ = false;
     }
 
@@ -37,7 +39,16 @@ export class HomeComponent implements OnInit {
                     return att.getName().includes('given_name');
                 })[0].Value;
 
-                this.isDataLoaded$ = true;
+                this.username = currentUser.getUsername();
+
+                this.accountService.retrieveAccountByUserId(this.username).subscribe({
+                    next: (result) => {
+                        this.isDataLoaded$ = true;
+                    },
+                    error: (error) => {
+                        this.createNewAccount();
+                    },
+                });
             });
         });
     }
@@ -56,5 +67,22 @@ export class HomeComponent implements OnInit {
         this.name = this.attributes.filter((att) => {
             return att.getName().includes('given_name');
         })[0].Value;
+    }
+
+    createNewAccount() {
+        let obj: any = {};
+
+        obj['userId'] = this.username;
+        obj['balance'] = 0;
+        obj['paymentsIds'] = [];
+
+        this.accountService.createAccount(obj).subscribe({
+            next: (result) => {
+                this.isDataLoaded$ = true;
+            },
+            error: (error) => {
+                console.log(error);
+            },
+        });
     }
 }

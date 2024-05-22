@@ -12,8 +12,8 @@
                                 <mat-list-item>Cuenta de {{account.userId}}</mat-list-item>
                                 <mat-list-item>Id de la cuenta: {{account.id}}</mat-list-item>
                                 <mat-list-item>Balance actual: {{account.balance}}€</mat-list-item>
-                                <mat-list-item>IDs de los pagos realizados: {{account.paymentsIds |
-                                    json}}</mat-list-item>
+                                <mat-list-item>Cantidad de pagos realizados:
+                                    {{account.paymentsIds.length}}</mat-list-item>
                             </mat-list>
                         </mat-card-content>
                     </mat-card>

@@ -5,13 +5,13 @@
                 <mat-form-field style="width: 300px;">
                     <mat-label>Dirección de la cuenta</mat-label>
                     <input type="text" matInput [formControl]="paymentFormFirstStep" [matAutocomplete]="auto">
-                    <mat-autocomplete requireSelection #auto="matAutocomplete">
+                    <mat-autocomplete requireSelection #auto="matAutocomplete" [displayWith]="displayFn">
                         @for (option of filteredOptions | async; track option) {
-                        <mat-option [value]="option">{{option}}</mat-option>
+                        <mat-option [value]="option">{{option.userId}}</mat-option>
                         }
                     </mat-autocomplete>
                 </mat-form-field>
-                <button mat-fab extended matStepperNext type="button">Siguiente</button>
+                <button mat-fab extended matStepperNext type="button" (click)="loadAccount()">Siguiente</button>
             </form>
         </mat-step>
 
@@ -31,7 +31,7 @@
 
         <mat-step label="Confirmar el pago">
             <div style="padding: 20px !important;">
-                <mat-checkbox #confirmed>Confirmar pago a {{paymentFormFirstStep.value}}</mat-checkbox>
+                <mat-checkbox #confirmed> Confirmar pago a {{selectedAccount.userId}} </mat-checkbox>
             </div>
 
             <div style="display: flex;">
