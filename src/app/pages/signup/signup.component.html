@@ -1,6 +1,6 @@
 <div class="auth-component-root">
   <div class="mat-elevation-z8">
-    <form [formGroup]="signupForm" (ngSubmit)="onRegister()" novalidate>
+    <form [formGroup]="signupForm" (ngSubmit)="onRegister()">
       <mat-card>
         <mat-card-title>
           <nav mat-tab-nav-bar [tabPanel]="tabPanel">
@@ -33,7 +33,7 @@
 
         </mat-card-content>
         <mat-card-actions>
-          <button mat-fab extended>Crear Cuenta</button>
+          <button mat-fab extended [disabled]="signupForm.invalid">Crear Cuenta</button>
         </mat-card-actions>
       </mat-card>
     </form>

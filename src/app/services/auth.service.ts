@@ -100,10 +100,10 @@ export class AuthService {
                 this.openDialog(err.message || JSON.stringify(err));
                 return;
             }
-        });
 
-        this.openDialog('Te hemos enviado un correo para activar tu cuenta.');
-        this.router.navigate(['/login']);
+            this.openDialog('Te hemos enviado un correo para activar tu cuenta.');
+            this.router.navigate(['/login']);
+        });
     }
 
     getJwtIdToken(): string {
