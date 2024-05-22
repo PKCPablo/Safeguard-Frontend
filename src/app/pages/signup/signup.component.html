@@ -28,14 +28,22 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Contraseña</mat-label>
-            <input formControlName="password" matInput type="password">
+            <input matInput type="password" formControlName="password" (input)="this.validatePassword()" required>
 
-            <div>
+            <div *ngIf="password.length > 0">
               <ul>
-                <li>Al menos una letra mayúscula</li>
-                <li>Al menos una letra minúscula</li>
-                <li>Al menos un número</li>
-                <li>Al menos 8 carácteres</li>
+                <li [ngStyle]="{color: uppercaseValid ? 'green' : 'red' }">
+                  Al menos una letra mayúscula
+                </li>
+                <li [ngStyle]="{color: lowercaseValid ? 'green' : 'red' }">
+                  Al menos una letra minúscula
+                </li>
+                <li [ngStyle]="{color: numberValid ? 'green' : 'red' }">
+                  Al menos un número
+                </li>
+                <li [ngStyle]="{color: lengthValid ? 'green' : 'red' }">
+                  Al menos 8 carácteres
+                </li>
               </ul>
             </div>
           </mat-form-field>

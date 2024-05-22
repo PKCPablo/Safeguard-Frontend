@@ -11,6 +11,13 @@ import { AccountService } from '../../services/account.service';
 export class SignupComponent implements OnInit {
     signupForm: FormGroup;
 
+    password: string = '';
+
+    uppercaseValid: boolean = false;
+    lowercaseValid: boolean = false;
+    numberValid: boolean = false;
+    lengthValid: boolean = false;
+
     constructor(private formBuilder: FormBuilder, private authService: AuthService) {}
 
     ngOnInit(): void {
@@ -30,5 +37,21 @@ export class SignupComponent implements OnInit {
             this.signupForm.value['nickname'],
             this.signupForm.value['password']
         );
+    }
+
+    validatePassword(): void {
+        this.password = this.signupForm.value['password'];
+
+        const re_uppercase = new RegExp('(?=.*[A-Z])');
+        const re_lowercase = new RegExp('(?=.*[a-z])');
+        const re_length = new RegExp('.{8,}$');
+        const re_number = new RegExp('(?=.*\\d)');
+
+        if (this.password.length > 0) {
+            this.uppercaseValid = this.password.match(re_uppercase) ? true : false;
+            this.lowercaseValid = this.password.match(re_lowercase) ? true : false;
+            this.numberValid = this.password.match(re_number) ? true : false;
+            this.lengthValid = this.password.match(re_length) ? true : false;
+        }
     }
 }

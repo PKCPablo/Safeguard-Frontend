@@ -16,7 +16,7 @@ import { InfoDialogComponent } from './shared/info-dialog/info-dialog.component'
 import { apiRestInterceptor } from './helpers/api-rest.interceptor';
 
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // Angular Material
@@ -39,6 +39,7 @@ import { AppMaterialModule } from './app-material.module';
         BrowserAnimationsModule,
         HttpClientModule,
         ReactiveFormsModule,
+        FormsModule,
         AppRoutingModule,
         AppMaterialModule,
     ],
