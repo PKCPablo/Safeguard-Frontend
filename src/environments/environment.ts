@@ -1,10 +1,10 @@
 export const environment = {
   cognito: {
-    userPoolId: 'eu-central-1_ADvCUGsDv',
-    clientId: '6pupq1kt4fucnd13ptpreopn5m',
-    region: 'eu-central-1',
+    userPoolId: 'CognitoUserPoolId',
+    clientId: 'CognitoClientId',
+    region: 'AWS-Region',
   },
   api: {
-    APIURL: 'https://1luly81ab8.execute-api.eu-central-1.amazonaws.com/Prod',
+    APIURL: 'API_REST_URL',
   },
 };
